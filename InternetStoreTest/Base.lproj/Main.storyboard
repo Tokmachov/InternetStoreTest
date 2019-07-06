@@ -229,7 +229,7 @@
                     <navigationItem key="navigationItem" id="ql9-to-QGy">
                         <barButtonItem key="rightBarButtonItem" title="Добавить товар" id="ibp-jX-3Uo">
                             <connections>
-                                <segue destination="Swa-L6-piL" kind="presentation" modalTransitionStyle="crossDissolve" id="JOw-f7-qel"/>
+                                <segue destination="TjJ-UC-VWa" kind="presentation" identifier="CreateProductVC" modalTransitionStyle="crossDissolve" id="JOw-f7-qel"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -247,7 +247,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="lCC-Re-HxG">
-                                <rect key="frame" x="10" y="30" width="300" height="146"/>
+                                <rect key="frame" x="10" y="74" width="300" height="146"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="i1U-wf-n2q">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
@@ -292,7 +292,7 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="13Q-fz-v5w">
                                         <rect key="frame" x="0.0" y="116" width="300" height="30"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Описание" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvQ-Ox-jGs">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Цена" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yvQ-Ox-jGs">
                                                 <rect key="frame" x="0.0" y="0.0" width="80.5" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
@@ -325,6 +325,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="01b-YL-OWD"/>
                     </view>
+                    <navigationItem key="navigationItem" id="dMS-ka-Ig2">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="RCP-WZ-wCq">
+                            <connections>
+                                <action selector="cancelButtonWasTapped:" destination="Swa-L6-piL" id="0FN-WB-Dpq"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="Reg-fP-OJ6">
+                            <connections>
+                                <action selector="saveButtonWasTapped:" destination="Swa-L6-piL" id="DGn-fr-NJj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="descriptionTextView" destination="yXX-6e-grQ" id="gln-Yd-IfB"/>
                         <outlet property="nameTextView" destination="AqW-Fu-4y0" id="d2h-8R-Ea8"/>
@@ -333,7 +345,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXO-jF-jS8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4496.25" y="500.7042253521127"/>
+            <point key="canvasLocation" x="5493.75" y="500.7042253521127"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Ugt-V7-TkL">
@@ -380,6 +392,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTW-s1-BXy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2435.625" y="500.7042253521127"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="zpj-LU-YYg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TjJ-UC-VWa" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6yE-4m-J2M">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Swa-L6-piL" kind="relationship" relationship="rootViewController" id="cSC-nT-WQh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3u6-a8-Szh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4496.25" y="500.7042253521127"/>
         </scene>
     </scenes>
 </document>

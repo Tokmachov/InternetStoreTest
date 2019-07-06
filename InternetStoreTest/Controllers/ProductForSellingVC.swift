@@ -9,8 +9,21 @@
 import UIKit
 
 class ProductsForSellingVC: UITableViewController {
-    var products: [Product]!
-
+    var products: [Product]! {
+        didSet {
+            print("added product")
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CreateProductVC" {
+            guard let vc = (segue.destination as? UINavigationController)?
+                .viewControllers.first as? CreateProductVC else { return }
+            vc.completion = { [ weak self ] product in
+                guard let self = self else { return }
+                self.products.append(product)
+            }
+        }
+    }
 }
 
 extension ProductsForSellingVC {

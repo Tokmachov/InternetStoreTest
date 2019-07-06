@@ -31,6 +31,7 @@ extension StoreOptionsScreenVC {
         case "Продажи":
             guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProductsForSellingVC") as? ProductsForSellingVC  else { return }
             vc.products = products
+            
             showDetailViewController(vc, sender: nil)
         default: break
         }
