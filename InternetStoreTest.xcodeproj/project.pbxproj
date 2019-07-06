@@ -14,10 +14,11 @@
 		04B4355922CD265300B1846D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B4355822CD265300B1846D /* Assets.xcassets */; };
 		04B4355C22CD265300B1846D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B4355A22CD265300B1846D /* LaunchScreen.storyboard */; };
 		04B4356522CD364900B1846D /* StoreOptionsScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4356422CD364900B1846D /* StoreOptionsScreenVC.swift */; };
-		04B4356722CD3A5A00B1846D /* AvailableProductsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4356622CD3A5A00B1846D /* AvailableProductsList.swift */; };
+		04B4356722CD3A5A00B1846D /* ProductsForBuyingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4356622CD3A5A00B1846D /* ProductsForBuyingVC.swift */; };
 		04B4356B22CD3B2100B1846D /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4356A22CD3B2100B1846D /* Product.swift */; };
 		04B4356D22CE7BB600B1846D /* ProductDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4356C22CE7BB600B1846D /* ProductDetailsVC.swift */; };
 		04B4356F22CE7F0800B1846D /* ProductForSellingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4356E22CE7F0800B1846D /* ProductForSellingVC.swift */; };
+		04B4357322CE9EA500B1846D /* CreateProductVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4357222CE9EA500B1846D /* CreateProductVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,10 +31,11 @@
 		04B4355B22CD265300B1846D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04B4355D22CD265300B1846D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		04B4356422CD364900B1846D /* StoreOptionsScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreOptionsScreenVC.swift; sourceTree = "<group>"; };
-		04B4356622CD3A5A00B1846D /* AvailableProductsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableProductsList.swift; sourceTree = "<group>"; };
+		04B4356622CD3A5A00B1846D /* ProductsForBuyingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsForBuyingVC.swift; sourceTree = "<group>"; };
 		04B4356A22CD3B2100B1846D /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		04B4356C22CE7BB600B1846D /* ProductDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsVC.swift; sourceTree = "<group>"; };
 		04B4356E22CE7F0800B1846D /* ProductForSellingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductForSellingVC.swift; sourceTree = "<group>"; };
+		04B4357222CE9EA500B1846D /* CreateProductVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,9 +85,10 @@
 			isa = PBXGroup;
 			children = (
 				04B4356422CD364900B1846D /* StoreOptionsScreenVC.swift */,
-				04B4356622CD3A5A00B1846D /* AvailableProductsList.swift */,
+				04B4356622CD3A5A00B1846D /* ProductsForBuyingVC.swift */,
 				04B4356C22CE7BB600B1846D /* ProductDetailsVC.swift */,
 				04B4356E22CE7F0800B1846D /* ProductForSellingVC.swift */,
+				04B4357222CE9EA500B1846D /* CreateProductVC.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -171,8 +174,9 @@
 			files = (
 				04B4355122CD265000B1846D /* ViewController.swift in Sources */,
 				04B4354F22CD265000B1846D /* AppDelegate.swift in Sources */,
-				04B4356722CD3A5A00B1846D /* AvailableProductsList.swift in Sources */,
+				04B4356722CD3A5A00B1846D /* ProductsForBuyingVC.swift in Sources */,
 				04B4356F22CE7F0800B1846D /* ProductForSellingVC.swift in Sources */,
+				04B4357322CE9EA500B1846D /* CreateProductVC.swift in Sources */,
 				04B4355722CD265000B1846D /* InternetStoreTest.xcdatamodeld in Sources */,
 				04B4356522CD364900B1846D /* StoreOptionsScreenVC.swift in Sources */,
 				04B4356B22CD3B2100B1846D /* Product.swift in Sources */,
