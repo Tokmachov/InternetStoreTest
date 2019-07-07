@@ -9,11 +9,9 @@
 import UIKit
 
 class ProductsForSellingVC: UITableViewController {
-    var products: [Product]! {
-        didSet {
-            print("added product")
-        }
-    }
+    var products: [Product]!
+    var completion: (([Product]) -> Void)!
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CreateProductVC" {
             guard let vc = (segue.destination as? UINavigationController)?
@@ -21,6 +19,8 @@ class ProductsForSellingVC: UITableViewController {
             vc.completion = { [ weak self ] product in
                 guard let self = self else { return }
                 self.products.append(product)
+                self.completion(self.products)
+                self.tableView.reloadData()
             }
         }
     }

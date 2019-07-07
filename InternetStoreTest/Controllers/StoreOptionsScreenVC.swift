@@ -4,8 +4,25 @@ import UIKit
 class StoreOptionsScreenVC: UITableViewController {
     var storeOptionNamesList = ["Покупки", "Продажи"]
 
-    var products = [car, bear, pear, water, air]
-
+    var products = [car, bear, pear, water, air] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        products = loadProductsFromMemory()
+    }
+    
+    
+}
+extension StoreOptionsScreenVC {
+    private func loadProductsFromMemory() -> [Product] {
+        guard let path = Bundle.main.path(forResource: "Products", ofType: "plist"),
+            let xml = FileManager.default.contents(atPath: path) else { fatalError() }
+        return try! PropertyListDecoder().decode([Product].self, from: xml)
+    }
 }
 
 extension StoreOptionsScreenVC {
@@ -31,7 +48,10 @@ extension StoreOptionsScreenVC {
         case "Продажи":
             guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProductsForSellingVC") as? ProductsForSellingVC  else { return }
             vc.products = products
-            
+            vc.completion = { [weak self] products in
+                guard let self = self else { return }
+                self.products = products
+            }
             showDetailViewController(vc, sender: nil)
         default: break
         }

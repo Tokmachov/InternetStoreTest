@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04A9FF5F22D1DABA00B4C3D3 /* Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04A9FF5E22D1DABA00B4C3D3 /* Products.plist */; };
 		04B4354F22CD265000B1846D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4354E22CD265000B1846D /* AppDelegate.swift */; };
-		04B4355122CD265000B1846D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4355022CD265000B1846D /* ViewController.swift */; };
 		04B4355422CD265000B1846D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B4355222CD265000B1846D /* Main.storyboard */; };
 		04B4355722CD265000B1846D /* InternetStoreTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04B4355522CD265000B1846D /* InternetStoreTest.xcdatamodeld */; };
 		04B4355922CD265300B1846D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04B4355822CD265300B1846D /* Assets.xcassets */; };
@@ -22,9 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04A9FF5E22D1DABA00B4C3D3 /* Products.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Products.plist; sourceTree = "<group>"; };
 		04B4354B22CD265000B1846D /* InternetStoreTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternetStoreTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B4354E22CD265000B1846D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		04B4355022CD265000B1846D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		04B4355322CD265000B1846D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04B4355622CD265000B1846D /* InternetStoreTest.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = InternetStoreTest.xcdatamodel; sourceTree = "<group>"; };
 		04B4355822CD265300B1846D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -69,13 +69,13 @@
 			isa = PBXGroup;
 			children = (
 				04B4354E22CD265000B1846D /* AppDelegate.swift */,
-				04B4355022CD265000B1846D /* ViewController.swift */,
 				04B4355222CD265000B1846D /* Main.storyboard */,
 				04B4355822CD265300B1846D /* Assets.xcassets */,
 				04B4356822CD3A9E00B1846D /* Models */,
 				04B4356322CD361500B1846D /* Controllers */,
 				04B4355A22CD265300B1846D /* LaunchScreen.storyboard */,
 				04B4355D22CD265300B1846D /* Info.plist */,
+				04A9FF5E22D1DABA00B4C3D3 /* Products.plist */,
 				04B4355522CD265000B1846D /* InternetStoreTest.xcdatamodeld */,
 			);
 			path = InternetStoreTest;
@@ -159,6 +159,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A9FF5F22D1DABA00B4C3D3 /* Products.plist in Resources */,
 				04B4355C22CD265300B1846D /* LaunchScreen.storyboard in Resources */,
 				04B4355922CD265300B1846D /* Assets.xcassets in Resources */,
 				04B4355422CD265000B1846D /* Main.storyboard in Resources */,
@@ -172,7 +173,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04B4355122CD265000B1846D /* ViewController.swift in Sources */,
 				04B4354F22CD265000B1846D /* AppDelegate.swift in Sources */,
 				04B4356722CD3A5A00B1846D /* ProductsForBuyingVC.swift in Sources */,
 				04B4356F22CE7F0800B1846D /* ProductForSellingVC.swift in Sources */,
