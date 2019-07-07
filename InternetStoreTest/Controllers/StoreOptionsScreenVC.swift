@@ -4,9 +4,10 @@ import UIKit
 class StoreOptionsScreenVC: UITableViewController {
     var storeOptionNamesList = ["Покупки", "Продажи"]
 
-    var products = [car, bear, pear, water, air] {
+    var products: [Product] = [] {
         didSet {
             tableView.reloadData()
+            saveProductsToMemory()
         }
     }
     
@@ -19,9 +20,21 @@ class StoreOptionsScreenVC: UITableViewController {
 }
 extension StoreOptionsScreenVC {
     private func loadProductsFromMemory() -> [Product] {
-        guard let path = Bundle.main.path(forResource: "Products", ofType: "plist"),
-            let xml = FileManager.default.contents(atPath: path) else { fatalError() }
+        guard let url = Bundle.main.url(forResource: "Products", withExtension: "plist") else { fatalError() }
+            let xml = try! Data(contentsOf: url)
         return try! PropertyListDecoder().decode([Product].self, from: xml)
+    }
+    private func saveProductsToMemory() {
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
+        
+        let url = Bundle.main.url(forResource: "Products" , withExtension: "plist")!
+        do {
+            let data = try encoder.encode(products)
+            try data.write(to: url)
+        } catch {
+            print(error)
+        }
     }
 }
 
