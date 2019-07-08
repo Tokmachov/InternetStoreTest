@@ -21,7 +21,7 @@ class StoreOptionsScreenVC: UITableViewController {
 extension StoreOptionsScreenVC {
     private func loadProductsFromMemory() -> [Product] {
         guard let url = Bundle.main.url(forResource: "Products", withExtension: "plist") else { fatalError() }
-            let xml = try! Data(contentsOf: url)
+        let xml = try! Data(contentsOf: url)
         return try! PropertyListDecoder().decode([Product].self, from: xml)
     }
     private func saveProductsToMemory() {
@@ -71,11 +71,4 @@ extension StoreOptionsScreenVC {
     }
 }
 
-
-
-let car = Product(name: "Машина", description: "Хорошая машина", price: 2500)
-let bear = Product(name: "Плюшевый медведь", description: "Хороший медведь", price: 10)
-let pear = Product(name: "Груша", description: "Хорошая груша", price: 20)
-let water = Product(name: "Вода", description: "Хорошая вода", price: 1)
-let air = Product(name: "Воздух", description: "Хороший воздух", price: 100.66)
 

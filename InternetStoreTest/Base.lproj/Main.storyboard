@@ -167,13 +167,22 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ukQ-4a-jWh">
+                                <rect key="frame" x="135" y="192" width="50" height="30"/>
+                                <state key="normal" title="Купить"/>
+                                <connections>
+                                    <action selector="buyButtonIsTapped" destination="881-Da-RXa" eventType="touchUpInside" id="gCe-bi-fQ8"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="eHg-8x-Urp" firstAttribute="centerX" secondItem="1fs-qw-TPt" secondAttribute="centerX" id="00b-Px-eb0"/>
+                            <constraint firstItem="ukQ-4a-jWh" firstAttribute="centerX" secondItem="1fs-qw-TPt" secondAttribute="centerX" id="5ww-Cy-tbb"/>
                             <constraint firstItem="nae-wi-rYP" firstAttribute="leading" secondItem="2HP-wg-I3t" secondAttribute="leading" constant="10" id="8Q9-4d-MwB"/>
                             <constraint firstItem="nae-wi-rYP" firstAttribute="top" secondItem="eHg-8x-Urp" secondAttribute="bottom" constant="20" id="Mjd-45-rdP"/>
                             <constraint firstItem="eHg-8x-Urp" firstAttribute="top" secondItem="2HP-wg-I3t" secondAttribute="top" constant="20" id="m6C-06-yib"/>
+                            <constraint firstItem="ukQ-4a-jWh" firstAttribute="top" secondItem="nae-wi-rYP" secondAttribute="bottom" constant="30" id="zwt-a7-afZ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2HP-wg-I3t"/>
                     </view>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040E07BF22D33E0400749867 /* Seller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040E07BE22D33E0400749867 /* Seller.swift */; };
 		04A9FF5F22D1DABA00B4C3D3 /* Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04A9FF5E22D1DABA00B4C3D3 /* Products.plist */; };
 		04B4354F22CD265000B1846D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4354E22CD265000B1846D /* AppDelegate.swift */; };
 		04B4355422CD265000B1846D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B4355222CD265000B1846D /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040E07BE22D33E0400749867 /* Seller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seller.swift; sourceTree = "<group>"; };
 		04A9FF5E22D1DABA00B4C3D3 /* Products.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Products.plist; sourceTree = "<group>"; };
 		04B4354B22CD265000B1846D /* InternetStoreTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternetStoreTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B4354E22CD265000B1846D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				04B4356A22CD3B2100B1846D /* Product.swift */,
+				040E07BE22D33E0400749867 /* Seller.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				04B4357322CE9EA500B1846D /* CreateProductVC.swift in Sources */,
 				04B4355722CD265000B1846D /* InternetStoreTest.xcdatamodeld in Sources */,
 				04B4356522CD364900B1846D /* StoreOptionsScreenVC.swift in Sources */,
+				040E07BF22D33E0400749867 /* Seller.swift in Sources */,
 				04B4356B22CD3B2100B1846D /* Product.swift in Sources */,
 				04B4356D22CE7BB600B1846D /* ProductDetailsVC.swift in Sources */,
 			);

@@ -11,6 +11,12 @@ import UIKit
 class ProductsForBuyingVC: UITableViewController {
     
     var products: [Product]!
+    var seller: SellerSingleton = SellerSingleton.shared
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        seller.delegate = self
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch  segue.identifier {
@@ -18,6 +24,7 @@ class ProductsForBuyingVC: UITableViewController {
             guard let productDetailsVC = segue.destination as? ProductDetailsVC,
                 let productIndex = tableView.indexPathForSelectedRow?.row else { return }
             productDetailsVC.product = products[productIndex]
+            productDetailsVC.delegate = self
         default: break
         }
     }
@@ -36,7 +43,24 @@ extension ProductsForBuyingVC {
     }
 }
 
+extension ProductsForBuyingVC: ProductDetailsVCDelegate {
+    func productDetailsVCDelegate(_ productDetailsVC: ProductDetailsVC, didFinishWorkWith product: Product, using seller: SellerSingleton) {
+        self.seller = seller
+        self.seller.delegate = self
+    }
+}
 
+extension ProductsForBuyingVC: SellerDelegate {
+    func seller(_ seller: SellerSingleton, didStartSelling product: Product) {
+        
+    }
+    func seller(_ seller: SellerSingleton, didSell product: Product) {
+        print("ProductsForBuyingVC: продан продукт \(product.name) в ")
+    }
+}
+protocol ProductDetailsVCDelegate: AnyObject {
+    func productDetailsVCDelegate(_ productDetailsVC: ProductDetailsVC, didFinishWorkWith product: Product, using seller: SellerSingleton)
+}
 
 
 
