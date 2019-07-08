@@ -11,6 +11,12 @@ import UIKit
 class ProductsForSellingVC: UITableViewController {
     var products: [Product]!
     var completion: (([Product]) -> Void)!
+    var supplier: SupplierSingleton = SupplierSingleton.shared
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        supplier.delegate = self
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "CreateProductVC" {
@@ -36,5 +42,14 @@ extension ProductsForSellingVC {
         cell.textLabel?.text = product.name
         cell.detailTextLabel?.text = String(product.price)
         return cell
+    }
+}
+
+extension ProductsForSellingVC: SupplierDelegate {
+    func supplier(_ supplier: SupplierSingleton, didStartSupplying product: Product) {
+        print("Началась поставка")
+    }
+    func supplier(_ supplier: SupplierSingleton, didSupply product: Product) {
+        print("Закончилась поставка")
     }
 }

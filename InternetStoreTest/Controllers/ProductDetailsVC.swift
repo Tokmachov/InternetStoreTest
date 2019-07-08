@@ -10,11 +10,17 @@ import UIKit
 
 class ProductDetailsVC: UIViewController {
     
-    var product: Product!
+    var indexOfProductToDisplay: Int!
     
-    weak var delegate: ProductDetailsVCDelegate!
+    private var store = StoreSingleton.shared
     
-    private var seller: SellerSingleton!
+    private var product: Product! {
+        didSet {
+            renderProductStaticData()
+            renderProductStatus()
+        }
+    }
+    
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -24,48 +30,23 @@ class ProductDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        populateUIWithProductInfo()
-        setupSeller()
-        renderProductStatus()
+        product = store.product(atIndex: indexOfProductToDisplay)
+        store.delegate = self
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        delegate.productDetailsVCDelegate(self, didFinishWorkWith: product)
-    }
+    
     @IBAction func buyButtonIsTapped() {
-        seller.sell(product)
-    }
-}
-
-extension ProductDetailsVC: SellerDelegate {
-    func seller(_ seller: SellerSingleton, didStartSelling product: Product) {
-        print("Начал продавать")
-        self.product.status = Product.Status.inProcessOfSelling
-        renderProductStatus()
-    }
-    func seller(_ seller: SellerSingleton, didSell product: Product) {
-        print("Продал")
-        self.product.status = Product.Status.sold
-        renderProductStatus()
-        self.product.status = Product.Status.available
-        renderProductStatus()
+        store.buyProduct(atIndex: indexOfProductToDisplay)
     }
 }
 
 extension ProductDetailsVC {
-    private func populateUIWithProductInfo() {
-        self.nameLabel.text = product.name
-        self.descriptionLabel.text = product.description
-        self.priceLabel.text = String(product.price)
-        self.statusLabel.text = product.status.textualDecription
-    }
-    
-    private func setupSeller() {
-        self.seller = SellerSingleton.shared
-        self.seller.delegate = self
+    private func renderProductStaticData() {
+        nameLabel.text = product.name
+        descriptionLabel.text = product.description
+        priceLabel.text = String(product.price)
     }
     private func renderProductStatus() {
-        self.statusLabel.text = product.status.textualDecription
+        statusLabel.text = product.status.textualDecription
         switch product.status {
         case .available, .sold:
             activityIndicator.stopAnimating()
@@ -74,3 +55,18 @@ extension ProductDetailsVC {
         }
     }
 }
+
+extension ProductDetailsVC: StoreDelegate {
+    func store(_ store: StoreSingleton, didStartSellingProductAtIndex index: Int) {
+        guard index == indexOfProductToDisplay else { return }
+        product = store.product(atIndex: index)
+        print("1")
+    }
+    
+    func store(_ store: StoreSingleton, didSellProductAtIndex index: Int) {
+        guard index == indexOfProductToDisplay else { return }
+        product = store.product(atIndex: index)
+        print("2")
+    }
+}
+

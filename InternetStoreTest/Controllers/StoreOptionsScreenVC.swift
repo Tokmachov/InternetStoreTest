@@ -3,20 +3,12 @@ import UIKit
 
 class StoreOptionsScreenVC: UITableViewController {
     var storeOptionNamesList = ["Покупки", "Продажи"]
-
-    var products: [Product] = [] {
-        didSet {
-            tableView.reloadData()
-            saveProductsToMemory()
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        products = loadProductsFromMemory()
+        let products = loadProductsFromMemory()
+        StoreSingleton.shared.add(products)
     }
-    
-    
 }
 extension StoreOptionsScreenVC {
     private func loadProductsFromMemory() -> [Product] {
@@ -24,18 +16,18 @@ extension StoreOptionsScreenVC {
         let xml = try! Data(contentsOf: url)
         return try! PropertyListDecoder().decode([Product].self, from: xml)
     }
-    private func saveProductsToMemory() {
-        let encoder = PropertyListEncoder()
-        encoder.outputFormat = .xml
-        
-        let url = Bundle.main.url(forResource: "Products" , withExtension: "plist")!
-        do {
-            let data = try encoder.encode(products)
-            try data.write(to: url)
-        } catch {
-            print(error)
-        }
-    }
+//    private func saveProductsToMemory() {
+//        let encoder = PropertyListEncoder()
+//        encoder.outputFormat = .xml
+//        
+//        let url = Bundle.main.url(forResource: "Products" , withExtension: "plist")!
+//        do {
+//            let data = try encoder.encode(products)
+//            try data.write(to: url)
+//        } catch {
+//            print(error)
+//        }
+//    }
 }
 
 extension StoreOptionsScreenVC {
@@ -56,19 +48,14 @@ extension StoreOptionsScreenVC {
         switch  optionName {
         case "Покупки":
             guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProductForBuying") as? ProductsForBuyingVC  else { return }
-            vc.products = products
             showDetailViewController(vc, sender: nil)
         case "Продажи":
             guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProductsForSellingVC") as? ProductsForSellingVC  else { return }
-            vc.products = products
-            vc.completion = { [weak self] products in
-                guard let self = self else { return }
-                self.products = products
-            }
             showDetailViewController(vc, sender: nil)
         default: break
         }
     }
 }
+
 
 

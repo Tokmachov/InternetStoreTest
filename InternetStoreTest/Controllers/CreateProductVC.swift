@@ -19,6 +19,7 @@ class CreateProductVC: UIViewController {
             let price = price else { return nil }
         return Product(name: name, description: productDescription, price: price, status: .available)
     }
+    private var supplier = SupplierSingleton.shared
     
     var completion: ((Product) -> Void)!
     
@@ -41,7 +42,7 @@ class CreateProductVC: UIViewController {
     }
     @IBAction func saveButtonWasTapped(_ sender: Any) {
         guard let product = product else { return }
-        completion(product)
+        supplier.order(product)
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
