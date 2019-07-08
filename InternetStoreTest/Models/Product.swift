@@ -10,17 +10,20 @@ import Foundation
 struct Product: Codable {
     enum Status: Int, Codable {
         case available
-        case inProcessOfSelling
-        case sold
+        case isInProcessOfSelling
+        case isSold
+        case isInProcessIfSupplying
         
         var textualDecription: String {
             switch self {
             case .available:
                 return "В наличии"
-            case .inProcessOfSelling:
+            case .isInProcessOfSelling:
                 return "Резерв"
-            case .sold:
+            case .isSold:
                 return "Продан"
+            case .isInProcessIfSupplying:
+                return "В процессе поставки"
             }
         }
     }

@@ -10,6 +10,8 @@ import UIKit
 
 class CreateProductVC: UIViewController {
     //MARK: Model
+    private var store = StoreSingleton.shared
+    
     private var name: String?
     private var productDescription: String?
     private var price: Double?
@@ -19,9 +21,7 @@ class CreateProductVC: UIViewController {
             let price = price else { return nil }
         return Product(name: name, description: productDescription, price: price, status: .available)
     }
-    private var supplier = SupplierSingleton.shared
     
-    var completion: ((Product) -> Void)!
     
     @IBOutlet weak var nameTextView: UITextView!
     @IBOutlet weak var descriptionTextView: UITextView!
@@ -42,7 +42,7 @@ class CreateProductVC: UIViewController {
     }
     @IBAction func saveButtonWasTapped(_ sender: Any) {
         guard let product = product else { return }
-        supplier.order(product)
+        store.supplyProductToStore(product)
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

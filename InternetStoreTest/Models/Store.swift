@@ -46,21 +46,35 @@ class StoreSingleton {
     
     func buyProduct(atIndex index: Int) {
         isolationQueue.async {
-            self.products[index].status = .inProcessOfSelling
+            self.products[index].status = .isInProcessOfSelling
             DispatchQueue.main.async {
-                self.delegate?.store(self, didStartSellingProductAtIndex: index)
+                self.delegate?.store(self, didUpdateProductStatusAtIndex: index)
             }
             sleep(3)
-            self.products[index].status = .sold
+            self.products[index].status = .isSold
             DispatchQueue.main.async {
-                self.delegate?.store(self, didSellProductAtIndex: index)
+                self.delegate?.store(self, didUpdateProductStatusAtIndex: index)
             }
         }
     }
-    
+    func supplyProductToStore(_ product: Product) {
+        var product = product
+        product.status = .isInProcessIfSupplying
+        isolationQueue.async {
+            self.products.append(product)
+            DispatchQueue.main.async {
+                self.delegate?.store(self, didReserveSlotForProductAtIndex: (self.products.endIndex - 1))
+            }
+            sleep(5)
+            self.products[self.products.endIndex - 1].status = .available
+            DispatchQueue.main.async {
+                self.delegate?.store(self, didUpdateProductStatusAtIndex: (self.products.endIndex - 1))
+            }
+        }
+    }
 }
 
 protocol StoreDelegate: AnyObject {
-    func store(_ store: StoreSingleton, didStartSellingProductAtIndex index: Int)
-    func store(_ store: StoreSingleton, didSellProductAtIndex index: Int)
+    func store(_ store: StoreSingleton, didUpdateProductStatusAtIndex index: Int)
+    func store(_ store: StoreSingleton, didReserveSlotForProductAtIndex index: Int)
 }

@@ -29,6 +29,9 @@ class ProductsForBuyingVC: UITableViewController {
         }
     }
 }
+
+extension ProductsForBuyingVC: ProductCellConfiguring {}
+
 extension ProductsForBuyingVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,18 +55,15 @@ extension ProductsForBuyingVC {
 }
 
 extension ProductsForBuyingVC: StoreDelegate {
-    func store(_ store: StoreSingleton, didStartSellingProductAtIndex index: Int) {
+    func store(_ store: StoreSingleton, didUpdateProductStatusAtIndex index: Int) {
         let indexPath = IndexPath(row: index, section: 0)
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
-    
-    func store(_ store: StoreSingleton, didSellProductAtIndex index: Int) {
+    func store(_ store: StoreSingleton, didReserveSlotForProductAtIndex index: Int) {
         let indexPath = IndexPath(row: index, section: 0)
-        tableView.reloadRows(at: [indexPath], with: .automatic)
+        tableView.insertRows(at: [indexPath], with: .automatic)
     }
 }
-
-
 
 
 

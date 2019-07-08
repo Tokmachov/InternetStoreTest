@@ -48,25 +48,24 @@ extension ProductDetailsVC {
     private func renderProductStatus() {
         statusLabel.text = product.status.textualDecription
         switch product.status {
-        case .available, .sold:
+        case .available, .isSold:
             activityIndicator.stopAnimating()
-        case .inProcessOfSelling:
+        case .isInProcessOfSelling:
+            activityIndicator.startAnimating()
+        case .isInProcessIfSupplying:
             activityIndicator.startAnimating()
         }
     }
 }
 
 extension ProductDetailsVC: StoreDelegate {
-    func store(_ store: StoreSingleton, didStartSellingProductAtIndex index: Int) {
+    func store(_ store: StoreSingleton, didUpdateProductStatusAtIndex index: Int) {
         guard index == indexOfProductToDisplay else { return }
         product = store.product(atIndex: index)
-        print("1")
     }
-    
-    func store(_ store: StoreSingleton, didSellProductAtIndex index: Int) {
+    func store(_ store: StoreSingleton, didReserveSlotForProductAtIndex index: Int) {
         guard index == indexOfProductToDisplay else { return }
         product = store.product(atIndex: index)
-        print("2")
     }
 }
 
