@@ -52,7 +52,7 @@ extension ProductDetailsVC {
             activityIndicator.stopAnimating()
         case .isInProcessOfSelling:
             activityIndicator.startAnimating()
-        case .isInProcessIfSupplying:
+        case .isInProcessOfAdding:
             activityIndicator.startAnimating()
         }
     }
@@ -63,7 +63,7 @@ extension ProductDetailsVC: StoreDelegate {
         guard index == indexOfProductToDisplay else { return }
         product = store.product(atIndex: index)
     }
-    func store(_ store: StoreSingleton, didReserveSlotForProductAtIndex index: Int) {
+    func store(_ store: StoreSingleton, didAddNewProductAtIndex index: Int) {
         guard index == indexOfProductToDisplay else { return }
         product = store.product(atIndex: index)
     }

@@ -12,17 +12,17 @@ struct Product: Codable {
         case available
         case isInProcessOfSelling
         case isSold
-        case isInProcessIfSupplying
+        case isInProcessOfAdding
         
         var textualDecription: String {
             switch self {
             case .available:
                 return "В наличии"
             case .isInProcessOfSelling:
-                return "Резерв"
+                return "В процессе продажи"
             case .isSold:
                 return "Продан"
-            case .isInProcessIfSupplying:
+            case .isInProcessOfAdding:
                 return "В процессе поставки"
             }
         }

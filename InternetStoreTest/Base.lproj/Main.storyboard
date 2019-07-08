@@ -116,7 +116,7 @@
                                     <outlet property="nameLabel" destination="SaK-WL-nz0" id="n90-0b-KUU"/>
                                     <outlet property="priceLabel" destination="vRJ-gy-O3X" id="wEG-3Z-grQ"/>
                                     <outlet property="statusLabel" destination="hKr-PL-5Sa" id="JmZ-Rs-xzk"/>
-                                    <segue destination="881-Da-RXa" kind="show" identifier="Show products details" id="xiD-Gr-QOh"/>
+                                    <segue destination="881-Da-RXa" kind="show" identifier="Show product details" id="xiD-Gr-QOh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

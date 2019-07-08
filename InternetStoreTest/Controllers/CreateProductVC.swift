@@ -42,7 +42,7 @@ class CreateProductVC: UIViewController {
     }
     @IBAction func saveButtonWasTapped(_ sender: Any) {
         guard let product = product else { return }
-        store.supplyProductToStore(product)
+        store.addProductToStore(product)
         presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }

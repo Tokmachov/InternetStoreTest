@@ -38,7 +38,7 @@ extension ProductsForSellingVC: StoreDelegate {
         let indexPath = IndexPath(row: index, section: 0)
         tableView.reloadRows(at: [indexPath], with: .automatic)
     }
-    func store(_ store: StoreSingleton, didReserveSlotForProductAtIndex index: Int) {
+    func store(_ store: StoreSingleton, didAddNewProductAtIndex index: Int) {
         let indexPath = IndexPath(row: index, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
     }

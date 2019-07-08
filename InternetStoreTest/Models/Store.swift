@@ -23,15 +23,33 @@ class StoreSingleton {
    
     private var isolationQueue: DispatchQueue = DispatchQueue(label: "InternetStoreIsolationQueue", qos: .userInitiated)
     
-    private var products: [Product] = []
+    private var products: [Product] {
+        didSet {
+            saveProductsToMemory()
+        }
+    }
     
     weak var delegate: StoreDelegate?
     
-    private init() {}
-    
-    func add(_ products: [Product]) {
-        isolationQueue.async {
-            self.products += products
+    private init() {
+        self.products = []
+        self.products = loadProductsFromMemory()
+    }
+    private func loadProductsFromMemory() -> [Product] {
+        guard let url = Bundle.main.url(forResource: "Products", withExtension: "plist") else { fatalError() }
+        let xml = try! Data(contentsOf: url)
+        return try! PropertyListDecoder().decode([Product].self, from: xml)
+    }
+    private func saveProductsToMemory() {
+        let encoder = PropertyListEncoder()
+        encoder.outputFormat = .xml
+        
+        let url = Bundle.main.url(forResource: "Products" , withExtension: "plist")!
+        do {
+            let data = try encoder.encode(products)
+            try data.write(to: url)
+        } catch {
+            print(error)
         }
     }
     var productsCount: Int {
@@ -57,13 +75,13 @@ class StoreSingleton {
             }
         }
     }
-    func supplyProductToStore(_ product: Product) {
+    func addProductToStore(_ product: Product) {
         var product = product
-        product.status = .isInProcessIfSupplying
+        product.status = .isInProcessOfAdding
         isolationQueue.async {
             self.products.append(product)
             DispatchQueue.main.async {
-                self.delegate?.store(self, didReserveSlotForProductAtIndex: (self.products.endIndex - 1))
+                self.delegate?.store(self, didAddNewProductAtIndex: (self.products.endIndex - 1))
             }
             sleep(5)
             self.products[self.products.endIndex - 1].status = .available
@@ -76,5 +94,5 @@ class StoreSingleton {
 
 protocol StoreDelegate: AnyObject {
     func store(_ store: StoreSingleton, didUpdateProductStatusAtIndex index: Int)
-    func store(_ store: StoreSingleton, didReserveSlotForProductAtIndex index: Int)
+    func store(_ store: StoreSingleton, didAddNewProductAtIndex index: Int)
 }
