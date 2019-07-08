@@ -34,19 +34,22 @@ extension ProductsForBuyingVC {
         return products.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let productCell = tableView.dequeueReusableCell(withIdentifier: "Product Cell", for: indexPath)
+        guard let productCell = tableView.dequeueReusableCell(withIdentifier: "Product Cell", for: indexPath) as? ProductCell else { fatalError() }
         let productName = products[indexPath.row].name
         let productPrice = String(products[indexPath.row].price)
-        productCell.textLabel?.text = productName
-        productCell.detailTextLabel?.text = productPrice
+        let productStatus = products[indexPath.row].status.textualDecription
+        
+        productCell.nameLabel.text = productName
+        productCell.priceLabel.text = productPrice
+        productCell.statusLabel.text = productStatus
+        
         return productCell
     }
 }
 
 extension ProductsForBuyingVC: ProductDetailsVCDelegate {
-    func productDetailsVCDelegate(_ productDetailsVC: ProductDetailsVC, didFinishWorkWith product: Product, using seller: SellerSingleton) {
-        self.seller = seller
-        self.seller.delegate = self
+    func productDetailsVCDelegate(_ productDetailsVC: ProductDetailsVC, didFinishWorkWith product: Product) {
+        
     }
 }
 
@@ -59,7 +62,7 @@ extension ProductsForBuyingVC: SellerDelegate {
     }
 }
 protocol ProductDetailsVCDelegate: AnyObject {
-    func productDetailsVCDelegate(_ productDetailsVC: ProductDetailsVC, didFinishWorkWith product: Product, using seller: SellerSingleton)
+    func productDetailsVCDelegate(_ productDetailsVC: ProductDetailsVC, didFinishWorkWith product: Product)
 }
 
 

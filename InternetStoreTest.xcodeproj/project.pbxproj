@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040E07BF22D33E0400749867 /* Seller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040E07BE22D33E0400749867 /* Seller.swift */; };
+		0449810D22D36E7400BC2AD1 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0449810C22D36E7400BC2AD1 /* ProductCell.swift */; };
 		04A9FF5F22D1DABA00B4C3D3 /* Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = 04A9FF5E22D1DABA00B4C3D3 /* Products.plist */; };
 		04B4354F22CD265000B1846D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4354E22CD265000B1846D /* AppDelegate.swift */; };
 		04B4355422CD265000B1846D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04B4355222CD265000B1846D /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 
 /* Begin PBXFileReference section */
 		040E07BE22D33E0400749867 /* Seller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Seller.swift; sourceTree = "<group>"; };
+		0449810C22D36E7400BC2AD1 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
 		04A9FF5E22D1DABA00B4C3D3 /* Products.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Products.plist; sourceTree = "<group>"; };
 		04B4354B22CD265000B1846D /* InternetStoreTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InternetStoreTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04B4354E22CD265000B1846D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +53,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0449810B22D36E6000BC2AD1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0449810C22D36E7400BC2AD1 /* ProductCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		04B4354222CD265000B1846D = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +84,7 @@
 				04B4355222CD265000B1846D /* Main.storyboard */,
 				04B4355822CD265300B1846D /* Assets.xcassets */,
 				04B4356822CD3A9E00B1846D /* Models */,
+				0449810B22D36E6000BC2AD1 /* View */,
 				04B4356322CD361500B1846D /* Controllers */,
 				04B4355A22CD265300B1846D /* LaunchScreen.storyboard */,
 				04B4355D22CD265300B1846D /* Info.plist */,
@@ -183,6 +194,7 @@
 				04B4355722CD265000B1846D /* InternetStoreTest.xcdatamodeld in Sources */,
 				04B4356522CD364900B1846D /* StoreOptionsScreenVC.swift in Sources */,
 				040E07BF22D33E0400749867 /* Seller.swift in Sources */,
+				0449810D22D36E7400BC2AD1 /* ProductCell.swift in Sources */,
 				04B4356B22CD3B2100B1846D /* Product.swift in Sources */,
 				04B4356D22CE7BB600B1846D /* ProductDetailsVC.swift in Sources */,
 			);

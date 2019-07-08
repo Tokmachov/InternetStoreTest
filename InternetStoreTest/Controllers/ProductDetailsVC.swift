@@ -19,35 +19,58 @@ class ProductDetailsVC: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         populateUIWithProductInfo()
         setupSeller()
+        renderProductStatus()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        delegate.productDetailsVCDelegate(self, didFinishWorkWith: product)
+    }
     @IBAction func buyButtonIsTapped() {
-        seller.buy(product)
+        seller.sell(product)
     }
 }
 
 extension ProductDetailsVC: SellerDelegate {
     func seller(_ seller: SellerSingleton, didStartSelling product: Product) {
-        print("Details: Начата продажа \(product.name)")
+        print("Начал продавать")
+        self.product.status = Product.Status.inProcessOfSelling
+        renderProductStatus()
     }
     func seller(_ seller: SellerSingleton, didSell product: Product) {
-        print("Details: Продукт \(product.name) продан")
+        print("Продал")
+        self.product.status = Product.Status.sold
+        renderProductStatus()
+        self.product.status = Product.Status.available
+        renderProductStatus()
     }
 }
 
 extension ProductDetailsVC {
-    private func populateUIWithProductInfo {
+    private func populateUIWithProductInfo() {
         self.nameLabel.text = product.name
         self.descriptionLabel.text = product.description
         self.priceLabel.text = String(product.price)
+        self.statusLabel.text = product.status.textualDecription
     }
+    
     private func setupSeller() {
         self.seller = SellerSingleton.shared
         self.seller.delegate = self
+    }
+    private func renderProductStatus() {
+        self.statusLabel.text = product.status.textualDecription
+        switch product.status {
+        case .available, .sold:
+            activityIndicator.stopAnimating()
+        case .inProcessOfSelling:
+            activityIndicator.startAnimating()
+        }
     }
 }

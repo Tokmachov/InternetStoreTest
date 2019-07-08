@@ -17,7 +17,7 @@ class CreateProductVC: UIViewController {
         guard let name = name,
         let productDescription = productDescription,
             let price = price else { return nil }
-        return Product(name: name, description: productDescription, price: price)
+        return Product(name: name, description: productDescription, price: price, status: .available)
     }
     
     var completion: ((Product) -> Void)!
