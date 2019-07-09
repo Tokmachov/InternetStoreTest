@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Кружка</string>
+		<key>description</key>
+		<string>Кружка для чая</string>
+		<key>price</key>
+		<integer>50</integer>
+		<key>status</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Стол</string>
+		<key>description</key>
+		<string>Деревянный письменный стол.</string>
+		<key>price</key>
+		<real>4255.55</real>
+		<key>status</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Самовар</string>
+		<key>description</key>
+		<string>Старинный самовар. Произведен в 1901 г.</string>
+		<key>price</key>
+		<real>1450.6</real>
+		<key>status</key>
+		<integer>0</integer>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Тетрадка</string>
+		<key>description</key>
+		<string>Тетрадь в клетку. 50 листов. Толстая обложка.</string>
+		<key>price</key>
+		<real>30.12</real>
+		<key>status</key>
+		<integer>0</integer>
+	</dict>
+</array>
+</plist>
