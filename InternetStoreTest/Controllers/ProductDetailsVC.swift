@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import MessageUI
 
-class ProductDetailsVC: UIViewController {
+class ProductDetailsVC: UIViewController  {
     
     var indexOfProductToDisplay: Int!
     
     private var store = StoreSingleton.shared
+    private lazy var priceFormatter: NumberFormatter = {
+       let formatter = NumberFormatter()
+       formatter.numberStyle = .currency
+       return formatter
+    }()
     
     private var product: Product! {
         didSet {
@@ -37,13 +43,18 @@ class ProductDetailsVC: UIViewController {
     @IBAction func buyButtonIsTapped() {
         store.buyProduct(atIndex: indexOfProductToDisplay)
     }
+    @IBAction func shareButtonIsTapped() {
+        sendEmail()
+    }
 }
 
 extension ProductDetailsVC {
     private func renderProductStaticData() {
+        let price = priceFormatter.string(from: NSNumber(value: product.price))
+        
         nameLabel.text = product.name
         descriptionLabel.text = product.description
-        priceLabel.text = String(product.price)
+        priceLabel.text = price
     }
     private func renderProductStatus() {
         statusLabel.text = product.status.textualDecription
@@ -69,3 +80,42 @@ extension ProductDetailsVC: StoreDelegate {
     }
 }
 
+extension ProductDetailsVC {
+    private func createPDF() -> Data {
+        let pageRect = CGRect(x: 0, y: 0, width: 595.2, height: 841.8)
+        let renderer = UIGraphicsPDFRenderer(bounds: pageRect)
+        let formattedPrice = priceFormatter.string(from: NSNumber(value: product.price))!
+        let text = """
+        Название товара: \(product.name)
+        
+        Описание товара: \(product.description)
+        
+        Цена товара: \(formattedPrice)
+        """
+        let textAttributes = [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 36)]
+        
+        let formattedText = NSMutableAttributedString(string: text, attributes: textAttributes)
+        
+        let data = renderer.pdfData { ctx in
+            ctx.beginPage()
+            formattedText.draw(in: pageRect.insetBy(dx: 50, dy: 50))
+        }
+        return data
+    }
+}
+
+extension ProductDetailsVC: MFMailComposeViewControllerDelegate {
+    private func sendEmail() {
+        if MFMailComposeViewController.canSendMail() {
+            let mail = MFMailComposeViewController()
+            mail.mailComposeDelegate = self
+            let pdf = createPDF()
+            mail.addAttachmentData(pdf, mimeType: "application/pdf", fileName: "Some")
+            present(mail, animated: true)
+        }
+    }
+    
+    internal func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true)
+    }
+}

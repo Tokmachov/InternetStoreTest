@@ -9,6 +9,9 @@
 import Foundation
 
 class StoreSingleton {
+    
+    private static var store: StoreSingleton?
+    
     static var shared: StoreSingleton {
         get {
             if store != nil {
@@ -19,9 +22,11 @@ class StoreSingleton {
             }
         }
     }
-    private static var store: StoreSingleton?
-   
-    private var isolationQueue: DispatchQueue = DispatchQueue(label: "InternetStoreIsolationQueue", qos: .userInitiated)
+    
+    private var isolationQueue = DispatchQueue(
+        label: "InternetStoreIsolationQueue",
+        qos: .userInitiated
+    )
     
     private var products: [Product] {
         didSet {
@@ -29,12 +34,57 @@ class StoreSingleton {
         }
     }
     
-    weak var delegate: StoreDelegate?
-    
     private init() {
         self.products = []
         self.products = loadProductsFromMemory()
     }
+    
+    weak var delegate: StoreDelegate?
+    
+    var productsCount: Int {
+        return products.count
+    }
+    
+    func product(atIndex index: Int) -> Product {
+        return products[index]
+    }
+    
+    func buyProduct(atIndex index: Int) {
+        isolationQueue.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.products[index].status = .isInProcessOfSelling
+                self.delegate?.store(self, didUpdateProductStatusAtIndex: index)
+            }
+            sleep(3)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.products[index].status = .isSold
+                self.delegate?.store(self, didUpdateProductStatusAtIndex: index)
+            }
+        }
+    }
+    
+    func addToStore(_ product: Product) {
+        var product = product
+        product.status = .isInProcessOfAdding
+        isolationQueue.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.products.append(product)
+                self.delegate?.store(self, didAddNewProductAtIndex: (self.products.endIndex - 1))
+            }
+            sleep(5)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.products[self.products.endIndex - 1].status = .available
+                self.delegate?.store(self, didUpdateProductStatusAtIndex: (self.products.endIndex - 1))
+            }
+        }
+    }
+}
+
+extension StoreSingleton {
     private func loadProductsFromMemory() -> [Product] {
         guard let url = Bundle.main.url(forResource: "Products", withExtension: "plist") else { fatalError() }
         let xml = try! Data(contentsOf: url)
@@ -51,44 +101,7 @@ class StoreSingleton {
         } catch {
             print(error)
         }
-    }
-    var productsCount: Int {
-        return products.count
-    }
-    
-    func product(atIndex index: Int) -> Product {
-        var product: Product?
-        product = products[index]
-        return product!
-    }
-    
-    func buyProduct(atIndex index: Int) {
-        isolationQueue.async {
-            self.products[index].status = .isInProcessOfSelling
-            DispatchQueue.main.async {
-                self.delegate?.store(self, didUpdateProductStatusAtIndex: index)
-            }
-            sleep(3)
-            self.products[index].status = .isSold
-            DispatchQueue.main.async {
-                self.delegate?.store(self, didUpdateProductStatusAtIndex: index)
-            }
-        }
-    }
-    func addProductToStore(_ product: Product) {
-        var product = product
-        product.status = .isInProcessOfAdding
-        isolationQueue.async {
-            self.products.append(product)
-            DispatchQueue.main.async {
-                self.delegate?.store(self, didAddNewProductAtIndex: (self.products.endIndex - 1))
-            }
-            sleep(5)
-            self.products[self.products.endIndex - 1].status = .available
-            DispatchQueue.main.async {
-                self.delegate?.store(self, didUpdateProductStatusAtIndex: (self.products.endIndex - 1))
-            }
-        }
+    print("Saved")
     }
 }
 
